@@ -198,7 +198,8 @@ const Game2048 = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-red-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-red-500 text-white p-8">
+    
       <div className="bg-white rounded-3xl shadow-2xl p-8 max-w-md w-full">
         {/* Header */}
         <div className="text-center mb-6">
