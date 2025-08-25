@@ -203,9 +203,10 @@ const Game2048 = () => {
       <div className="bg-white rounded-3xl shadow-2xl p-8 max-w-md w-full">
         {/* Header */}
         <div className="text-center mb-6">
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-red-600 via-orange-500 to-yellow-500 bg-clip-text text-transparent mb-4">
-            2048
+          <h1 className="text-5xl font-bold bg-gradient-to-r from-red-600 via-orange-500 to-yellow-500 bg-clip-text text-transparent mb-2">
+            2048-C
           </h1>
+          <p className="text-lg text-gray-600 mb-4">by Francesco Marinuzzi, Ph.D.</p>
           <div className="flex justify-between items-center mb-4">
             <div className="bg-gradient-to-r from-orange-400 to-red-400 text-white px-6 py-3 rounded-xl shadow-lg">
               <div className="text-sm font-medium">PUNTEGGIO</div>
