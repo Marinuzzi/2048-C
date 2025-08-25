@@ -28,6 +28,10 @@ const Game2048 = () => {
 
   const [grid, setGrid] = useState(initializeGrid);
   const [score, setScore] = useState(0);
+  const [highScore, setHighScore] = useState(() => {
+    const saved = localStorage.getItem('2048-highscore');
+    return saved ? parseInt(saved) : 0;
+  });
   const [gameWon, setGameWon] = useState(false);
   const [gameOver, setGameOver] = useState(false);
 
@@ -144,7 +148,14 @@ const Game2048 = () => {
     if (result.moved) {
       addRandomNumber(result.grid);
       setGrid(result.grid);
-      setScore(prev => prev + result.scoreIncrease);
+      const newScore = score + result.scoreIncrease;
+      setScore(newScore);
+      
+      // Aggiorna il record se necessario
+      if (newScore > highScore) {
+        setHighScore(newScore);
+        localStorage.setItem('2048-highscore', newScore.toString());
+      }
       
       if (isGameOver(result.grid)) {
         setGameOver(true);
@@ -208,9 +219,15 @@ const Game2048 = () => {
           </h1>
           <p className="text-lg text-gray-600 mb-4">by Francesco Marinuzzi, Ph.D.</p>
           <div className="flex justify-between items-center mb-4">
-            <div className="bg-gradient-to-r from-orange-400 to-red-400 text-white px-6 py-3 rounded-xl shadow-lg">
-              <div className="text-sm font-medium">PUNTEGGIO</div>
-              <div className="text-2xl font-bold">{score}</div>
+            <div className="flex space-x-3">
+              <div className="bg-gradient-to-r from-orange-400 to-red-400 text-white px-4 py-3 rounded-xl shadow-lg">
+                <div className="text-xs font-medium">PUNTEGGIO</div>
+                <div className="text-xl font-bold">{score}</div>
+              </div>
+              <div className="bg-gradient-to-r from-yellow-400 to-orange-400 text-white px-4 py-3 rounded-xl shadow-lg">
+                <div className="text-xs font-medium">RECORD</div>
+                <div className="text-xl font-bold">{highScore}</div>
+              </div>
             </div>
             <button
               onClick={resetGame}
